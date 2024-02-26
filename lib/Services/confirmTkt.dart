@@ -22,24 +22,24 @@ class ConfirmTktService {
     }
   }
 
-  Future<String?> tmp(int pnrNo) async {
-    String fUrl = "$url/$pnrNo";
-    RegExp regex = RegExp(r".*data\s*=(.*\});", caseSensitive: false);
-    try {
-      http.Response res = await http.get(Uri.parse(fUrl));
-      try {
-        var match = regex.firstMatch(res.body.toString())?.group(2);
-        return match;
-      } on RangeError catch (e) {
-        errorMessage="Server Failed!!";
-        return errorMessage;
-      }
-    } on SocketException {
-      errorMessage = "Internal Server Error!";
-      return errorMessage;
-    } on http.ClientException {
-      errorMessage = "Internet Connection Error!";
-      return errorMessage;
-    }
-  }
+  // Future<String?> tmp(int pnrNo) async {
+  //   String fUrl = "$url/$pnrNo";
+  //   RegExp regex = RegExp(r".*data\s*=(.*\});", caseSensitive: false);
+  //   try {
+  //     http.Response res = await http.get(Uri.parse(fUrl));
+  //     try {
+  //       var match = regex.firstMatch(res.body.toString())?.group(2);
+  //       return match;
+  //     } on RangeError catch (e) {
+  //       errorMessage="Server Failed!!";
+  //       return errorMessage;
+  //     }
+  //   } on SocketException {
+  //     errorMessage = "Internal Server Error!";
+  //     return errorMessage;
+  //   } on http.ClientException {
+  //     errorMessage = "Internet Connection Error!";
+  //     return errorMessage;
+  //   }
+  // }
 }
