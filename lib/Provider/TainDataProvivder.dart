@@ -20,8 +20,29 @@ class PnrProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void tempo(int pnrNo) async {
-    tv = (await ConfirmTktService().tmp(pnrNo))!;
+
+
+  // void tempo(int pnrNo) async {
+  //   tv = (await ConfirmTktService().tmp(pnrNo))!;
+  //   notifyListeners();
+  // }
+}
+
+class TrainScheduleProvider extends ChangeNotifier{
+  late Map<String, dynamic> trainSchedule={};
+  // String trainSchedule="";
+  String tv = "Nothing";
+  bool inProgress = false;
+
+
+  void isInProgress() {
+    inProgress = !inProgress;
+    notifyListeners();
+  }
+  void getTrainSchedule(int trainNo) async{
+    isInProgress();
+    trainSchedule= await ConfirmTktService().getSchedule(trainNo);
+    isInProgress();
     notifyListeners();
   }
 }

@@ -21,11 +21,11 @@ class _PnrDetailsScreenState extends State<PnrDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("PNR Details"),
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-        ),
+        // appBar: AppBar(
+        //   title: const Text("PNR Details"),
+        //   backgroundColor: Colors.blue,
+        //   foregroundColor: Colors.white,
+        // ),
         body: Consumer<PnrProvider>(
             builder: ((context, providerHelp, child) => Stack(children: [
                   GestureDetector(

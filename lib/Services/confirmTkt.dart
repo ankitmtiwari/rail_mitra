@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 
 class ConfirmTktService {
-  String url = "https://www.confirmtkt.com/pnr-status";
+  String url = "https://www.confirmtkt.com/";
   String errorMessage = "ignore";
   Future<Map<String, dynamic>> getPnrDetails(int pnrNo) async {
-    String fUrl = "$url/$pnrNo";
+    String fUrl = "${url}pnr-status/$pnrNo";
     RegExp regex = RegExp(r".*data\s*=(.*\});", caseSensitive: false);
     try {
       http.Response res = await http.get(Uri.parse(fUrl));
@@ -19,6 +19,25 @@ class ConfirmTktService {
     } on http.ClientException {
       errorMessage = "Internet Connection Error!";
       return {"Error": errorMessage};
+    }
+  }
+
+  Future<Map<String,dynamic>> getSchedule(int trainNo) async{
+    String fUrl = "${url}train-schedule/$trainNo";
+    RegExp regex = RegExp(r".*data\s*=\s*'\s*(.*\})';", caseSensitive: false);
+    try {
+      http.Response res = await http.get(Uri.parse(fUrl));
+      var match = regex.firstMatch(res.body.toString())?.group(1);
+      return json.decode(match!.toString());
+      // return res.body.toString();
+    } on SocketException {
+      errorMessage = "Internal Server Error!";
+      return {"Error": errorMessage};
+      // return errorMessage;
+    } on http.ClientException {
+      errorMessage = "Internet Connection Error!";
+      return {"Error": errorMessage};
+      // return errorMessage;
     }
   }
 
