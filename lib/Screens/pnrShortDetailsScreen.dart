@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class PnrShortDetails extends StatelessWidget {
-  Map ticketData;
+  final Map ticketData;
   final Function(int pntNumber)? onReload;
 
   PnrShortDetails(
@@ -16,7 +16,7 @@ class PnrShortDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List pDetails = ticketData['PassengerStatus'];
+    final List pDetails = ticketData['PassengerStatus'];
     List<Row> passengerStatus() {
       return List.generate(
           pDetails.length,
@@ -94,7 +94,7 @@ class PnrShortDetails extends StatelessWidget {
                   ),
                   ticketData['InformationMessage'] != null
                       ? Text(ticketData['InformationMessage'])
-                      : SizedBox(),
+                      : const SizedBox(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

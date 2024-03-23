@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:rail_mitra/Screens/stationStopWidget.dart';
-
 import '../Provider/TainDataProvivder.dart';
 
 class TrainScheduleScreen extends StatefulWidget {
@@ -120,21 +118,24 @@ class _TrainScheduleScreenState extends State<TrainScheduleScreen> {
                                   ? SingleChildScrollView(
                                       child: Column(
                                         children: [
-                                          Card(
-                                            child: ListTile(
-                                              titleAlignment:
-                                                  ListTileTitleAlignment
-                                                      .titleHeight,
-                                              horizontalTitleGap:
-                                                  MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.08,
-                                              leading: const Text("Arrival"),
-                                              title: const Text("Station Name"),
-                                              subtitle: const Text(
-                                                  "Dist. Platform no"),
-                                              trailing: const Text("Departure"),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Card(
+                                              child: ListTile(
+                                                titleAlignment:
+                                                    ListTileTitleAlignment
+                                                        .titleHeight,
+                                                horizontalTitleGap:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .width *
+                                                        0.08,
+                                                leading: const Text("Arrival"),
+                                                title: const Text("Station Name"),
+                                                subtitle: const Text(
+                                                    "Dist. Platform no"),
+                                                trailing: const Text("Departure"),
+                                              ),
                                             ),
                                           ),
                                           ListView.builder(
@@ -148,67 +149,70 @@ class _TrainScheduleScreenState extends State<TrainScheduleScreen> {
                                                 int index) {
                                               List schedule = providerHelp
                                                   .trainSchedule['Schedule'];
-                                              return Card(
-                                                surfaceTintColor:
-                                                    Colors.transparent,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.all(8.0),
-                                                  child: SizedBox(
-                                                    width:
-                                                        MediaQuery.of(context)
-                                                                .size
-                                                                .width *
-                                                            0.8,
-                                                    child: ListTile(
-                                                      titleAlignment:
-                                                          ListTileTitleAlignment
-                                                              .titleHeight,
-                                                      horizontalTitleGap:
+                                              return Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Card(
+                                                  surfaceTintColor:
+                                                      Colors.transparent,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(8.0),
+                                                    child: SizedBox(
+                                                      width:
                                                           MediaQuery.of(context)
                                                                   .size
                                                                   .width *
-                                                              0.08,
-                                                      leading: Text(schedule[
-                                                                      index][
-                                                                  'ArrivalTime']
-                                                              .toString()
-                                                              .isEmpty
-                                                          ? "Start"
-                                                          : schedule[index]
-                                                              ['ArrivalTime']),
-                                                      title: Text(
-                                                          schedule[index]
-                                                              ['StationName']),
-                                                      subtitle: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .start,
-                                                        children: [
-                                                          Text(
-                                                              "${schedule[index]['Distance']} km"),
-                                                          SizedBox(
-                                                            width: MediaQuery.of(
-                                                                        context)
+                                                              0.8,
+                                                      child: ListTile(
+                                                        titleAlignment:
+                                                            ListTileTitleAlignment
+                                                                .titleHeight,
+                                                        horizontalTitleGap:
+                                                            MediaQuery.of(context)
                                                                     .size
                                                                     .width *
-                                                                0.05,
-                                                          ),
-                                                          Text(schedule[index][
-                                                                      'ExpectedPlatformNo'] ==
-                                                                  null
-                                                              ? "Platform -"
-                                                              : "Platform ${schedule[index]['ExpectedPlatformNo']}"),
-                                                        ],
+                                                                0.08,
+                                                        leading: Text(schedule[
+                                                                        index][
+                                                                    'ArrivalTime']
+                                                                .toString()
+                                                                .isEmpty
+                                                            ? "Start"
+                                                            : schedule[index]
+                                                                ['ArrivalTime']),
+                                                        title: Text(
+                                                            schedule[index]
+                                                                ['StationName']),
+                                                        subtitle: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                                "${schedule[index]['Distance']} km"),
+                                                            SizedBox(
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.05,
+                                                            ),
+                                                            Text(schedule[index][
+                                                                        'ExpectedPlatformNo'] ==
+                                                                    null
+                                                                ? "Platform -"
+                                                                : "Platform ${schedule[index]['ExpectedPlatformNo']}"),
+                                                          ],
+                                                        ),
+                                                        trailing: Text(schedule[
+                                                                        index][
+                                                                    'DepartureTime']
+                                                                .toString()
+                                                                .isEmpty
+                                                            ? "End"
+                                                            : schedule[index][
+                                                                'DepartureTime']),
                                                       ),
-                                                      trailing: Text(schedule[
-                                                                      index][
-                                                                  'DepartureTime']
-                                                              .toString()
-                                                              .isEmpty
-                                                          ? "End"
-                                                          : schedule[index][
-                                                              'DepartureTime']),
                                                     ),
                                                   ),
                                                 ),
@@ -218,12 +222,7 @@ class _TrainScheduleScreenState extends State<TrainScheduleScreen> {
                                         ],
                                       ),
                                     )
-                                  : SizedBox()
-                              // providerHelp.trainSchedule['TrainNo'] != null
-                              //     ? StationStopWidget(
-                              //         trainData: providerHelp.trainSchedule,
-                              //         onReload: providerHelp.getTrainSchedule)
-                              //     : const SizedBox()
+                                  : const SizedBox()
                             ],
                           ),
                         ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rail_mitra/Provider/TainDataProvivder.dart';
 import 'package:rail_mitra/Screens/homeScreen.dart';
-import 'package:rail_mitra/Screens/pnrDetailScreen.dart';
 
 void main() {
   runApp(const MyApp());
